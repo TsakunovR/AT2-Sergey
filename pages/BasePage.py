@@ -8,7 +8,7 @@ class BasePage:
         return WDW(self.driver, time).until(EC.presence_of_element_located(locator), message=f'Не смогли дождаться элемент {locator}')
 
     def find_elements(self):
-        return WDW(self.driver, time).until(EC.presence_of_all_elements_located(locator),  message=f'Не смогли дождаться элемент {locator}')
+        return WDW(self.driver, jtime).until(EC.presence_of_all_elements_located(locator),  message=f'Не смогли дождаться элемент {locator}')
 
     def go_to_url(self,url):
         return self.driver.get(url)
