@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from pages.BasePage import BasePage
 class LoginPageLocators:
     LOGIN_TAB = (By.XPATH, '//a[@data-l="t,login_tab"]')
     FIELD_LOGIN = (By.XPATH, '//a[@data-l="t,login_tab"]')
@@ -14,6 +15,12 @@ class LoginPageLocators:
     APPLE_BUTTON = (By.XPATH, '//a[@data-l="t,apple"]')
     QR_TAB = (By.XPATH, '//a[@data-l="t,qr_tab"]')
 
+class LoginPageHelper(BasePage):
+    def __init__(self,driver):
+        super().__init__(driver)
+        self.check_page()
+    def check_page(self):
+        self.find_element(LoginPageLocators.LOGIN_TAB, 10)
 
 
 
