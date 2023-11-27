@@ -33,3 +33,4 @@ def test_incorrect_password(browser):
     login_page_helper.cliclLoginBatton()
     assert login_page_helper.getErrorText() == WRONG_PASSWORD_ERROR
 
+
