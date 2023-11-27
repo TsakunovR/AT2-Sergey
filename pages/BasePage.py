@@ -4,10 +4,9 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def find_element(self, locator,time=5):
+    def find_element(self, locator, time = 5):
         return WDW(self.driver, time).until(EC.presence_of_element_located(locator), message=f'Не смогли дождаться элемент {locator}')
-
-    def find_elements(self):
+    def find_elements(self, locator, time = 5):
         return WDW(self.driver, time).until(EC.presence_of_all_elements_located(locator),  message=f'Не смогли дождаться элемент {locator}')
 
     def go_to_url(self,url):
