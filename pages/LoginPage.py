@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
+import allure
+
 class LoginPageLocators:
     LOGIN_TAB = (By.XPATH, '//a[@data-l="t,login_tab"]')
     FIELD_LOGIN = (By.XPATH, '//input[@data-l="t,login"]')
@@ -16,20 +18,44 @@ class LoginPageLocators:
     QR_TAB = (By.XPATH, '//a[@data-l="t,qr_tab"]')
     ERROR_FIELD_TEXT = (By.XPATH, '//div[@class="form_i form_i__error"]')
 
+
 class LoginPageHelper(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
         self.check_page()
+
+    @allure.step('Проверяем наличие всех элементов на странице авторизации')
     def check_page(self):
         self.find_element(LoginPageLocators.LOGIN_TAB, 10)
+        self.find_element(LoginPageLocators.FIELD_LOGIN)
+        self.find_element(LoginPageLocators.FIELD_PASSWORD)
+        self.find_element(LoginPageLocators.SIGN_IN_BUTTON)
+        self.find_element(LoginPageLocators.SIGN_IN_BUTTON_QR)
+        self.find_element(LoginPageLocators.CANT_SIGN_IN)
+        self.find_element(LoginPageLocators.REGISTRATION)
+        self.find_element(LoginPageLocators.VK_BUTTON)
+        self.find_element(LoginPageLocators.MAIL_BUTTON)
+        self.find_element(LoginPageLocators.GOOGLE_BUTTON)
+        self.find_element(LoginPageLocators.YANDEX_BUTTON)
+        self.find_element(LoginPageLocators.APPLE_BUTTON)
+        self.find_element(LoginPageLocators.QR_TAB)
+
+    @allure.step('Нажимаем на кнопку "Войти в одноклассники"')
     def cliclLoginBatton(self):
         self.find_element(LoginPageLocators.SIGN_IN_BUTTON).click()
+
+    @allure.step('Получаем текст ошибки')
     def getErrorText(self):
         return self.find_element(LoginPageLocators.ERROR_FIELD_TEXT).text
+
+    @allure.step('Вводим логин')
     def set_login(self, login):
         self.find_element(LoginPageLocators.FIELD_LOGIN).send_keys(login)
+
+    @allure.step('Вводим пароль')
     def set_password(self,password):
         self.find_element(LoginPageLocators.FIELD_PASSWORD).send_keys(password)
+
 
 
 
