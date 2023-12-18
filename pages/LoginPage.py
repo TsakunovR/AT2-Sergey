@@ -56,6 +56,9 @@ class LoginPageHelper(BasePage):
     def set_password(self,password):
         self.find_element(LoginPageLocators.FIELD_PASSWORD).send_keys(password)
 
+    @allure.step('Нажимаем на текст "Не получается войти"')
+    def clicCantSignIn(self):
+        self.find_element(LoginPageLocators.CANT_SIGN_IN).click()
 
 
 
