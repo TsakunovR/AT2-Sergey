@@ -9,7 +9,6 @@ class RecoveryByPhonePageLocator:
     BUTTON_GET_THE_CODE =(By.XPATH,'//input[@data-l="t,submit"]')
     ATRIBUTE_FIELD_PHONE_CODE = (By.XPATH, '//input[@id="field_phone"]')
 
-
 class RecoveryByPhonePageHelper(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
