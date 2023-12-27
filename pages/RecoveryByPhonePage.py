@@ -9,17 +9,18 @@ class RecoveryByPhonePageLocator:
     BUTTON_GET_THE_CODE =(By.XPATH,'//input[@data-l="t,submit"]')
     ATRIBUTE_FIELD_PHONE_CODE = (By.XPATH, '//input[@id="field_phone"]')
 
-
 class RecoveryByPhonePageHelper(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
         self.check_page()
 
+    @allure.step('Проверяем наличие всех элементов на странице  "Укажите телефон"')
     def check_page(self):
         self.find_element(RecoveryByPhonePageLocator.FIELD_PHONE_NUMBER)
         self.find_element(RecoveryByPhonePageLocator.COUNTRY_FIELD)
         self.find_element(RecoveryByPhonePageLocator.BUTTON_GET_THE_CODE)
 
+    @allure.step('Выбираем страну в выпадающем списке')
     def select_country(self, country_number):
         self.find_element(RecoveryByPhonePageLocator.COUNTRY_FIELD).click()
         country_list_item = self.find_elements(RecoveryByPhonePageLocator.COUNTRY_LIST_ITEM)[country_number]
@@ -29,17 +30,7 @@ class RecoveryByPhonePageHelper(BasePage):
         country_list_item.click()
         return country_code
 
+    @allure.step('Проверяем код страны/региона в поле телефон')
     def get_phone_code_from_field(self):
         phone_code = self.find_element(RecoveryByPhonePageLocator.ATRIBUTE_FIELD_PHONE_CODE).get_attribute('value')
         return phone_code
-
-
-
-
-
-
-
-
-
-
-

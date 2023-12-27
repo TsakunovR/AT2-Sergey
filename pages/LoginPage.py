@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 import allure
+from selenium.webdriver.common.action_chains import ActionChains
 
 class LoginPageLocators:
     LOGIN_TAB = (By.XPATH, '//a[@data-l="t,login_tab"]')
@@ -9,7 +10,7 @@ class LoginPageLocators:
     SIGN_IN_BUTTON = (By.XPATH, '//input[@data-l="t,sign_in"]')
     SIGN_IN_BUTTON_QR = (By.XPATH, '//a[@data-l="t,get_qr"]')
     CANT_SIGN_IN = (By.XPATH, '//a[@data-l="t,restore"]')
-    REGISTRATION = (By.XPATH, '//a[@data-l="t,register"]')
+    REGISTRATION_BUTTON = (By.XPATH, '//a[@class="button-pro __sec mb-3x __wide"]')
     VK_BUTTON = (By.XPATH, '//a[@data-l="t,vkc"]')
     MAIL_BUTTON = (By.XPATH, '//a[@data-l="t,mailru"]')
     GOOGLE_BUTTON = (By.XPATH, '//a[@data-l="t,google"]')
@@ -17,6 +18,9 @@ class LoginPageLocators:
     APPLE_BUTTON = (By.XPATH, '//a[@data-l="t,apple"]')
     QR_TAB = (By.XPATH, '//a[@data-l="t,qr_tab"]')
     ERROR_FIELD_TEXT = (By.XPATH, '//div[@class="form_i form_i__error"]')
+    BUTTON_MORE = (By.XPATH,'//button[@class="more-popup_btn h-mod"]')
+    BUTTON_AGREEMENTS_AND_POLICIES = (By.XPATH,'//a[text()="Соглашения и политики"]')
+
 
 
 class LoginPageHelper(BasePage):
@@ -32,7 +36,7 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.SIGN_IN_BUTTON)
         self.find_element(LoginPageLocators.SIGN_IN_BUTTON_QR)
         self.find_element(LoginPageLocators.CANT_SIGN_IN)
-        self.find_element(LoginPageLocators.REGISTRATION)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON)
         self.find_element(LoginPageLocators.VK_BUTTON)
         self.find_element(LoginPageLocators.MAIL_BUTTON)
         self.find_element(LoginPageLocators.GOOGLE_BUTTON)
@@ -60,6 +64,12 @@ class LoginPageHelper(BasePage):
     def clicCantSignIn(self):
         self.find_element(LoginPageLocators.CANT_SIGN_IN).click()
 
+    @allure.step('Нажимаем на кнопку "Зарегистрироваться"')
+    def clicRegistrationButton(self):
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON).click()
 
-
-
+    @allure.step('Нажимаем на кнопку "еще" и выбираем в списке "Соглашения и политики"')
+    def clicButtonMoreSelectAgreementsAndPolicies(self):
+        BUTTON_MORE = self.find_element(LoginPageLocators.BUTTON_MORE)
+        BUTTON_AGREEMENTS_AND_POLICIES = self.find_element(LoginPageLocators.BUTTON_AGREEMENTS_AND_POLICIES)
+        ActionChains(self.driver).move_to_element(BUTTON_MORE).click(BUTTON_AGREEMENTS_AND_POLICIES).perform()
