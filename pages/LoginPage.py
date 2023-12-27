@@ -68,21 +68,8 @@ class LoginPageHelper(BasePage):
     def clicRegistrationButton(self):
         self.find_element(LoginPageLocators.REGISTRATION_BUTTON).click()
 
+    @allure.step('Нажимаем на кнопку "еще" и выбираем в списке "Соглашения и политики"')
     def clicButtonMoreSelectAgreementsAndPolicies(self):
         BUTTON_MORE = self.find_element(LoginPageLocators.BUTTON_MORE)
         BUTTON_AGREEMENTS_AND_POLICIES = self.find_element(LoginPageLocators.BUTTON_AGREEMENTS_AND_POLICIES)
         ActionChains(self.driver).move_to_element(BUTTON_MORE).click(BUTTON_AGREEMENTS_AND_POLICIES).perform()
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -11,6 +11,7 @@ class AgreementsAndPoliciesHelper(BasePage):
         super().__init__(driver)
         self.check_page()
 
+    @allure.step('Проверяем наличие всех элементов на странице "Соглашения и политики"')
     def check_page(self):
         self.find_element(AgreementsAndPoliciesPageLocator.RULES)
         self.find_element(AgreementsAndPoliciesPageLocator.FAQ)

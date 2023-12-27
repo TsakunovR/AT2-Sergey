@@ -27,6 +27,8 @@ def test_open_password_recovery_window(browser):
         login_page_helper.cliclLoginBatton()
     PasswordRecoveryPageHelper(browser)
 
+@allure.suite('Проверка формы восстановленя профиля')
+@allure.title('Восстановление профиля по телефону')
 def test_recovery_by_phone(browser, open_base_url):
     login_page_helper = LoginPageHelper(browser)
     login_page_helper.clicCantSignIn()
@@ -37,6 +39,8 @@ def test_recovery_by_phone(browser, open_base_url):
     RES_PHONE_CODE = recovery_by_phone_page.get_phone_code_from_field()
     assert RES_SELECT_COUNTRY == RES_PHONE_CODE
 
+@allure.suite('Проверка формы восстановленя профиля')
+@allure.title('Восстановление профиля по почте')
 def test_recovery_by_email(browser, open_base_url):
     login_page_helper = LoginPageHelper(browser)
     login_page_helper.clicCantSignIn()
@@ -45,10 +49,3 @@ def test_recovery_by_email(browser, open_base_url):
     recovery_by_email_page = RecoveryByEmailPageHelper(browser)
     recovery_by_email_page.cliclGetCodeButton()
     assert recovery_by_email_page.getTextError() == EMPTY_FIELD_EMAIL_ERROR
-
-
-
-
-
-
-

@@ -15,6 +15,7 @@ class RegistrationPageHelper(BasePage):
         super().__init__(driver)
         self.check_page()
 
+    @allure.step('Проверяем наличие всех элементов на странице  регистрации')
     def check_page(self):
         self.find_element(RegistrationPageLocator.FIELD_PHONE_NUMBER)
         self.find_element(RegistrationPageLocator.FIELD_COUNTRY)
@@ -22,9 +23,10 @@ class RegistrationPageHelper(BasePage):
         self.find_element(RegistrationPageLocator.REGULATION_TEXT)
         self.find_element(RegistrationPageLocator.PRIVACY_POLICY_TEXT)
 
+    @allure.step('Нажимаем кнопку далее')
     def click_further_button(self):
         self.find_element(RegistrationPageLocator.FURTHER_BUTTON).click()
 
+    @allure.step('Проверяем текст ошибки при пустом поле телефон')
     def getTextError(self):
         return self.find_element(RegistrationPageLocator.TEXT_ERROR_EMPTY_FIELD_PHONE).text
-

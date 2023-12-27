@@ -37,19 +37,11 @@ def test_incorrect_password(browser, open_base_url):
     login_page_helper.cliclLoginBatton()
     assert login_page_helper.getErrorText() == WRONG_PASSWORD_ERROR
 
+@allure.suite('Проверка формы авторизации')
+@allure.title('Проверка регистрации на платформе без ввода телефонного номера')
 def test_registration_empty_phone_field(browser, open_base_url):
     login_page_helper = LoginPageHelper(browser)
     login_page_helper.clicRegistrationButton()
     registration_page_helper = RegistrationPageHelper(browser)
     registration_page_helper.click_further_button()
     assert registration_page_helper.getTextError() == REGISTRATION_EMPTY_PHONE_FIELD
-
-
-
-
-
-
-
-
-
-
